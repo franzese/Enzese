@@ -1,0 +1,36 @@
+/************************************************/
+/*                ANIMATIONS                    */
+/************************************************/
+
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotatey(0deg); }
+    to { -webkit-transform: rotatey(360deg); }
+}
+
+@-moz-keyframes spin {
+    from { -moz-transform: rotatey(0deg); }
+    to { -moz-transform: rotatey(360deg); }
+}
+
+@-ms-keyframes spin {
+    from { -ms-transform: rotatey(0deg); }
+    to { -ms-transform: rotatey(360deg); }
+}
+
+@-o-keyframes spin {
+    from { -o-transform: rotatey(0deg); }
+    to { -o-transform: rotatey(360deg); }
+}
+
+@keyframes spin {
+    from { transform: rotatey(0deg); }
+    to { transform: rotatey(360deg); }
+}
+
+.spin {
+    -webkit-animation: spin 1.75s linear infinite;
+    -moz-animation: spin 1.75s linear infinite;
+    -ms-animation: spin 1.75s linear infinite;
+    -o-animation: spin 1.75s linear infinite;
+    animation: spin 1.75s linear infinite;
+}

@@ -1,0 +1,277 @@
+@import url('/static/css/animations.css');
+
+.clearfix:before,
+.clearfix:after {
+    content: " ";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+
+html, body, #background {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    color: white;
+    font-family: Helvetica Neue, Helvetica;
+    overflow: hidden;
+    font-size:12px;
+    letter-spacing: -2px;
+}
+
+a {
+    outline: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+.blurry {
+    -webkit-filter: blur(12px);
+       -moz-filter: blur(12px);
+         -o-filter: blur(12px);
+            filter: blur(12px);
+    opacity: 0.85;
+}
+
+.container {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+	bottom: 0;
+	right: 0;
+	margin-right:5%;
+	z-index: 1;
+	font-size: 0px;
+	width: 100%;
+    -webkit-perspective: 800px;
+       -moz-perspective: 800px;
+         -o-perspective: 800px;
+            perspective: 800px;
+}
+
+.contact {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  -webkit-transition: all 400ms;
+     -moz-transition: all 400ms;
+       -o-transition: all 400ms;
+          transition: all 400ms;
+  -webkit-transform: rotateY( 0deg );
+     -moz-transform: rotateY( 0deg );
+       -o-transform: rotateY( 0deg );
+          transform: rotateY( 0deg );
+  -webkit-transform-style: preserve-3d;
+     -moz-transform-style: preserve-3d;
+       -o-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-transform-origin: right center;
+     -moz-transform-origin: right center;
+       -o-transform-origin: right center;
+          transform-origin: right center;
+  -webkit-backface-visibility: hidden;
+     -moz-backface-visibility: hidden;
+       -o-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-filter: blur(40px);
+     -moz-filter: blur(40px);
+       -o-filter: blur(40px);
+          filter: blur(40px);
+  opacity: 0;
+  bottom: 0;
+  height: auto;
+  box-shadow: none;
+}
+
+.contact.on {/*
+-webkit-transform: rotateY( -100deg );
+   -moz-transform: rotateY( -100deg );
+     -o-transform: rotateY( -100deg );
+        transform: rotateY( -100deg );*/
+  -webkit-transform: rotateY( 0deg );
+     -moz-transform: rotateY( 0deg );
+       -o-transform: rotateY( 0deg );
+          transform: rotateY( 0deg );
+  -webkit-filter: blur(0px);
+     -moz-filter: blur(0px);
+       -o-filter: blur(0px);
+          filter: blur(0px);
+  opacity: 1;
+  display:block;
+}
+
+.contact input, 
+.contact textarea {
+    padding: 0;
+    margin: 0;
+    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 100%;
+    border-width: 0px 9px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 0px;
+    font-family: inherit;
+    font-size: 26px;
+    outline: none;
+}
+
+.contact label {
+    font-size: 26px;
+    width: 100%;
+    display: block;
+    color:#ffffff;
+    background: #000000;
+    padding: 12px 9px 0px 9px;
+}
+
+.contact .buttonwrap {
+    background-color: black;
+    border: 9px solid black;
+    width: 100%;
+}
+
+h1 {
+    color: black;
+    font-size: 50px;
+    font-weight: normal;
+    letter-spacing: -6px;
+    margin: 0;
+}
+
+.logo {
+    display: inline-block;
+    width: 262px;
+    height: 86px;
+    background-image: url('/static/img/enzese.svg');
+    background-position: 0px 0px;
+}
+
+.menu {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.menu ul {
+    opacity: 0;
+    -webkit-filter: blur(20px);
+    -moz-filter: blur(20px);
+    padding: 0px;
+    margin: 0px 9px 9px 9px;
+    border: 9px solid #000000;
+}
+
+.menu ul.on {
+    opacity: 1;
+    -webkit-filter: blur(0px);
+    -moz-filter: blur(0px);
+    -webkit-transition: all 500ms;
+    -moz-transition: all 500ms;
+}
+
+.menu li {
+  list-style: none;
+  position: relative;
+}
+
+.menu li a {
+  display: inline-block;
+  width: 100%;        
+  background-color: #000000;
+  font-size: 30px;
+  color: #ffffff;
+  text-decoration: none;
+  padding-left: 100px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+.menu li a:hover,
+.menu li a.on {
+  background-color: transparent;
+  background-color: rgba(255,255,255,0.4);
+  color: #000000;
+}
+
+.content {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin:9px 290px 9px 9px;
+    z-index: 1;
+    font-size: 0px;
+    width: 500px;
+    height: 100%;
+}
+
+.slowfade {
+    -webkit-transition: all 600ms;
+    -moz-transition: all 600ms;
+    -ms-transition: all 600ms;
+    -o-transition: all 600ms;
+    transition: all 600ms;    
+}
+
+.close {
+    background-image: url('/static/img/close.png');
+    width: 26px;
+    height: 26px;
+    display: block;
+    border: none;
+    margin: 0px -18px 0px 0px;
+    padding: 0;
+}
+ 
+.blockbutton {background-color:#B685F3; color: #9856EB; text-shadow: 0px 1px 0px #D6B9FC;border:none;font-size:26px;width:150px;height:40px;font-family:inherit;position:relative;cursor:pointer;z-index:2;letter-spacing: inherit;-webkit-transition: all 300ms;-moz-transition: all 300ms;}
+.blockbutton:before {content:"";background-color:#0DEDDF;position:absolute;width:100%;height:10px;z-index:1;box-shadow:-1px 0px 1px #0DEDDF;}
+.blockbutton:after {content:"";background-color:#89A7F5;position:absolute;width:10px;height:100%;z-index:1;}
+.blockbutton:hover { 
+    color: #FFFFFF;
+    text-shadow: 1px -1px #8439FB, 
+                 0px -1px #8439FB, 
+                 0px -2px #8439FB, 
+                -1px -2px #8439FB, 
+                -1px -3px #8439FA, 
+                -2px -3px #8439FA, 
+                -2px -4px #8439FA, 
+                -3px -4px #8439FA, 
+                -2px 3px 2px rgba(0,0,0,0.15);
+    padding: 8px 0px 0px 6px;
+}
+
+.blockbutton.br { margin: 9px 0px 0px 0px;}
+.blockbutton.br:before { left: -5px;top: -10px;-webkit-transform: skewX(45deg);-moz-transform: skewX(45deg);}
+.blockbutton.br:after  { left: -10px;top: -5px;-webkit-transform: skewY(45deg);-moz-transform: skewY(45deg);}
+
+
+.left {float:left;left:0;}
+.right {float:right;right:0;}
+.hidden, .fallback {display:none;}
+.wide { width:100%;}
+.abwrap { position: absolute;left:0;right:0;top:0;bottom:0;}
+
+@media (max-width: 500px) {
+	.container {
+		margin:0px;
+		text-align: center;
+	}
+
+	.menu {
+		position: relative;
+		display: inline-block;
+	}
+}
