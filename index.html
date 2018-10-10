@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Enzese</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="keywords" content="ricky franzese, ricky francese, franzese, francese, enzese">
+		<meta name="google-site-verification" content="pVesW_94lTGTyf5Uq1W_AgGT1nisvkGpGtjy6VZ4eac" />
+		<link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="/static/css/styles.css">
+	</head>
+	<body>
+    <div class="container">
+      <div class="content">
+        <form id="contact" action="/email/" class="contact hidden">
+          {% csrf_token %}
+          <h1>Contact</h1>
+          <button id="close" onclick="$('#contact').toggleClass('on');return false;" type="button" class="close right"></button>
+          <label>Your Email</label>
+          <input type="text" id="email" name="email"></input>
+          <label>Subject</label>
+          <input type="text" id="subject"></input>
+          <label>Message</label>
+          <textarea rows=3 id="message"></textarea>
+          <div class="buttonwrap clearfix">
+            <button type="submit" class="blockbutton br right">Send</button>
+          </div>
+        </form>
+      </div>
+  		<div id="menu" class="menu">
+  			<a href="" onclick="return false;" alt="ENZESE" class="logo"></a>
+  			<ul>
+          <li><a href="http://enzese.tumblr.com/" target="_blank">Tumblr</a></li>
+  			  <li><a href="http://dribbble.com/Enzese" target="_blank">Dribbble</a></li>
+  			  <li><a href="https://twitter.com/enzese" target="_blank">Twitter</a></li>
+          <li><a href="/contact" onclick="$('#contact').toggleClass('on');return false;" target="_blank">Contact</a></li>
+  			</ul>
+  		</div>
+  	</div>
+		<div id="background" class="slowfade"></div>
+		<script src="/static/js/jquery-1.8.1.min.js"></script>
+		<script src="/static/js/jquery.cookie.js"></script>
+    <script>
+      $('#menu').hover(function() { $('#background').addClass('blurry'); $('.menu ul').addClass('on'); $('.content .hidden').removeClass('hidden')},
+                       function() { $('#background').removeClass('blurry');});
+                       
+      $('#contact').submit( function() { 
+      	var csrftoken = $.cookie('csrftoken'),
+      		emailStr = $('#contact #email').val(),
+      		subjectStr = $('#contact #subject').val(),
+      		messageStr = $('#contact #message').val();
+      		
+      	$.ajax({
+      		type: 'POST',
+			url: '/email/',
+			data: { email: emailStr, subject: subjectStr, message: messageStr},
+			beforeSend: function(xhr, settings) { if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) { xhr.setRequestHeader("X-CSRFToken", csrftoken); } },
+			success: function() { $('#contact').removeClass('on').find('input').val('').parent().find('textarea').val(''); }
+		});
+      	
+		//$.post('/email/', { email: $('#contact #email').val(), subject: $('#contact #subject').val(), message: $('#contact #message').val()} );
+      	return false;
+      });      
+      
+      function csrfSafeMethod(method) {
+		// these HTTP methods do not require CSRF protection
+		return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+	  }
+	  
+	function sameOrigin(url) {
+		// test that a given url is a same-origin URL
+		// url could be relative or scheme relative or absolute
+		var host = document.location.host; // host + port
+		var protocol = document.location.protocol;
+		var sr_origin = '//' + host;
+		var origin = protocol + sr_origin;
+		// Allow absolute or scheme relative URLs to same origin
+		return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+			(url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+			// or any other URL that isn't scheme relative or absolute i.e relative.
+			!(/^(\/\/|http:|https:).*/.test(url));
+	}
+      
+    </script>
+		<script src="/static/js/Three.js"></script>
+		<script src="/static/js/Detector.js"></script>
+		<script src="/static/js/RequestAnimationFrame.js"></script>
+		<script src="/static/js/Stats.js"></script>
+		<script>
+			
+			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+
+			var container, stats;
+
+			var camera, controls, scene, renderer;
+
+			var cross;
+
+			init();
+			animate();
+
+			function init() {
+
+				scene = new THREE.Scene();
+				scene.fog = new THREE.FogExp2( 0xFFFFFF, 0.002 );
+
+				camera = new THREE.PerspectiveCamera( 40, window.innerWidth / window.innerHeight, 1, 1000 );
+
+				controls = new THREE.PathControls( camera );
+
+				controls.waypoints = [ [ -500, 0, 0 ], [ 0, 200, 0 ], [ 500, 0, 0 ] ];
+				controls.duration = 28
+				controls.useConstantSpeed = true;
+				//controls.createDebugPath = true;
+				//controls.createDebugDummy = true;
+				controls.lookSpeed = 0.0006;
+				controls.lookVertical = true;
+				controls.lookHorizontal = true;
+				controls.verticalAngleMap = { srcRange: [ 0, 2 * Math.PI ], dstRange: [ 1.1, 3.8 ] };
+				controls.horizontalAngleMap = { srcRange: [ 0, 2 * Math.PI ], dstRange: [ 0.3, Math.PI - 0.3 ] };
+				controls.lon = 180;
+
+				controls.init();
+
+				scene.add( controls.animationParent );
+
+				// world
+
+				var cube = new THREE.CubeGeometry( 20, 20, 20, 20 );
+
+				var material =  new THREE.MeshLambertMaterial( { color:0xffffff } );
+
+				for ( var i = 0; i < 500; i ++ ) {
+
+					var mesh = new THREE.Mesh( cube, material );
+					mesh.position.set(
+						( Math.random() - 0.5 ) * 1000,
+						( Math.random() - 0.5 ) * 1000,
+						( Math.random() - 0.5 ) * 1000
+					);
+
+					mesh.updateMatrix();
+					mesh.matrixAutoUpdate = false;
+					scene.add( mesh );
+				}
+
+				// lights
+
+        // top
+        light = new THREE.DirectionalLight( 0x0DEDDF );
+        light.position.set( 0, 1, 0 );
+        scene.add( light );
+
+        // bottom
+        light = new THREE.DirectionalLight( 0x0DEDDF );
+        light.position.set( 0, -1, 0 );
+        scene.add( light );
+        
+        // back
+				light = new THREE.DirectionalLight( 0x89A7F5 );
+				light.position.set( 1, 0, 0 );
+				scene.add( light );
+
+        // front
+        light = new THREE.DirectionalLight( 0x89A7F5 );
+        light.position.set( -1, 0, 0 );
+        scene.add( light );
+
+        // right
+        light = new THREE.DirectionalLight( 0xB685F3 );
+        light.position.set( 0, 0, 1 );
+        scene.add( light );
+
+        // left
+        light = new THREE.DirectionalLight( 0xB685F3 );
+        light.position.set( 0, 0, -1 );
+        scene.add( light );
+
+
+				// renderer
+
+				renderer = new THREE.WebGLRenderer( { antialias: true, maxLights: 6 } );
+				renderer.shadowMapEnabled = true;
+				renderer.setClearColorHex( 0xFFFFFF, 1 );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+				container = document.getElementById('background');
+				container.appendChild( renderer.domElement );
+
+				// stats in the top left. comment on production
+/*
+				stats = new Stats();
+				stats.domElement.style.position = 'absolute';
+				stats.domElement.style.top = '0px';
+				stats.domElement.style.zIndex = 100;
+				container.appendChild( stats.domElement );
+*/
+				// start animation
+
+				controls.animation.play( true, 0 );
+
+			}
+
+			function animate() {
+
+				requestAnimationFrame( animate );
+
+				render();
+				
+				if (stats) 
+				  stats.update();
+			}
+
+			function render() {
+
+				THREE.AnimationHandler.update( 1/60 );
+
+				controls.update();
+				renderer.render( scene, camera );
+
+			}
+		</script>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-37653468-1']);
+      _gaq.push(['_setDomainName', 'enzese.com']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </body>
+</html>
