@@ -38,7 +38,7 @@
   			</ul>
   		</div>
   	</div>
-		<div id="background" class="slowfade"><canvas width="1297" height="837"></canvas></div>
+		<div id="background" class="slowfade"></div>
 		<script src="/static/js/jquery-1.8.1.min.js"></script>
 		<script src="/static/js/jquery.cookie.js"></script>
     <script>
@@ -189,13 +189,7 @@
 				container.appendChild( renderer.domElement );
 
 				// stats in the top left. comment on production
-/*
-				stats = new Stats();
-				stats.domElement.style.position = 'absolute';
-				stats.domElement.style.top = '0px';
-				stats.domElement.style.zIndex = 100;
-				container.appendChild( stats.domElement );
-*/
+
 				// start animation
 
 				controls.animation.play( true, 0 );

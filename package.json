@@ -1,0 +1,22 @@
+{
+  "name": "enzese",
+  "version": "1.0.0",
+  "description": "enzese.com",
+  "main": "index.html",
+  "scripts": {
+    "start": "http-server -s ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/franzese/Enzese.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/franzese/Enzese/issues"
+  },
+  "homepage": "https://github.com/franzese/Enzese#readme",
+  "dependencies": {
+    "http-server": "^0.11.1"
+  }
+}
