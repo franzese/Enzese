@@ -79,6 +79,7 @@ button {
 	height: auto;
 	box-shadow: none;
 	font-size: 0;
+	z-index: 1;
 }
 
 .contact.on {
@@ -161,7 +162,7 @@ h1 {
 	font-size: 3rem;
 	color: #ffffff;
 	text-decoration: none;
-	padding-left: 8rem;
+	padding-left: 12rem;
 	padding-right: 2px;
 	box-sizing: border-box;
 }
@@ -265,10 +266,21 @@ h1 {
 }
 
 
+i {
+	display: inline-block;
+	background-repeat: no-repeat;
+	width: 1.6rem;
+	height: 1.6rem;
+}
+
+i.download { background-image: url('/static/img/icon-download.svg'); }
+a:hover i.download,
+a.on i.download { background-image: url('/static/img/icon-download-blk.svg'); }
+
 @media (max-width: 500px) {
 	.container {
 		margin:0;
-		text-align: center;
+		flex-direction: column;
 	}
 
 	.menu {
