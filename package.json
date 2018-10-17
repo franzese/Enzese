@@ -4,7 +4,7 @@
   "description": "enzese.com",
   "main": "index.html",
   "scripts": {
-    "start": "http-server -s ./"
+    "start": "http-server -p 8081 -s ./"
   },
   "repository": {
     "type": "git",
