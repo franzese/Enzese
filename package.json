@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/franzese/Enzese#readme",
   "dependencies": {
-    "http-server": "^0.11.1"
+    "csurf": "^1.9.0",
+    "express": "^4.16.4",
+    "http-server": "^0.11.1",
+    "mailgun-js": "^0.21.0"
   }
 }
